@@ -1,0 +1,57 @@
+<html><head><link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+
+</head><body><dom-module id="space-gallery">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+
+            paper-dialog  {
+                color: #FFF !important;
+            }
+
+            .image-holder p {
+                position: absolute;
+                bottom: 3%;
+                left: 20px;
+            }
+
+            .image {
+                width: 100%;
+                height: 100%;
+            }
+
+            .col {
+                @apply(--layout-vertical);
+                line-height: 0;
+                width: 33%;
+            }
+            @media (max-width: 800px) {
+                .col  {
+                    width:50%;
+                }
+            }
+            @media (max-width: 580px) {
+                .col  {
+                    width:100%;
+                }
+            }
+
+            #container {
+                @apply(--layout-horizontal);
+                @apply(--layout-wrap);
+            }
+        </style>
+
+        <div id="container">
+            <div class="col" id="col-1"></div>
+            <div class="col" id="col-2"></div>
+            <div class="col" id="col-3"></div>
+        </div>
+    </template>
+
+    <script>Polymer({is:"space-gallery",ready:function(){var e=Polymer.dom(this.root).querySelector("#col-1"),o=Polymer.dom(this.root).querySelector("#col-2"),r=Polymer.dom(this.root).querySelector("#col-3");$.ajax({url:"src/urls.txt",success:function(c){var l=c.split("\n"),t=0;l.forEach(function(c){c=c.split("|");var l;t<33?l=e:t>=33&&t<66?l=o:t>66&&(l=r),$(l).append("<space-image class='image' src='"+c[0]+"' title='"+c[1]+"' desc='"+c[2]+"'/>"),t++})}})}});</script>
+</dom-module>
+</body></html>

@@ -1,0 +1,72 @@
+<html><head><link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+
+</head><body><dom-module id="space-contact">
+    <template>
+        <style>
+            :host {
+                display: block;
+                color: #000;
+                padding: 10px 20px;
+                height: 100%;
+            }
+
+            img {
+                height: 30%;
+                width: 30%;
+            }
+            div {
+                height: 100%;
+                width: 100%;
+                position: fixed;
+                z-index: -99;
+                top:0;
+                bottom:0;
+                left:0;
+                right:0;
+            }
+
+            paper-material {
+                background: #fff;
+                width: 85%;
+                margin: 70px auto 0;
+                padding: 16px;
+            }
+            .big {
+                width: 25%;
+            }
+            .text-field {
+                width: 15%;
+            }
+            #toast {
+                --paper-toast-background-color: #575757;
+                --paper-toast-color: white;
+            }
+            paper-button {
+                background: #575757;
+                color: #fff;
+            }
+        </style>
+        <paper-material elevation="3">
+            <h1>Contact/Newsletter</h1>
+            <paper-input class="big" label="Your email-address"></paper-input>
+            <paper-input class="text-field" label="Your name"></paper-input>
+            <paper-input class="big" label="Subject"></paper-input>
+            <paper-input class="big" label="Message"></paper-input>
+            <br>
+            <paper-button submit="">Submit</paper-button>
+            <br>
+            <h3>Newsletter</h3>
+            <p>Click here to sign up for the newsletter (Just a one time email)</p>
+            <google-signin scope="profile email" client-id="830412539384-6lvgppioph496ov8fr7gquktviu21int.apps.googleusercontent.com" openid-prompt="consent" needadditionalauth="false"></google-signin>
+        </paper-material>
+        <paper-toast id="toast" class="fit-bottom" text="Thanks, {{name}} for signing up for my (fake) newsletter"></paper-toast>
+        <div>
+            <iframe frameborder="0" height="100%" width="100%" src="https://youtube.com/embed/86OrC7Ol7nE?autoplay=1&amp;controls=0&amp;showinfo=0&amp;autohide=1">
+            </iframe>
+        </div>
+    </template>
+
+    <script>Polymer({is:"space-contact",properties:{name:String},listeners:{"google-signin-success":"signedIn"},signedIn:function(){this.name=gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName(),this.$.toast.open(),$.ajax({url:"http://www.mhsweb2.com/doherty/sendmail.php",data:{email:gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail()},success:function(e){console.log("Success: "+e)}})}});</script>
+</dom-module>
+</body></html>

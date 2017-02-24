@@ -1,0 +1,22 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/space-app.html",
+  "fragments": [
+    "src/space-gallery.html",
+    "src/space-image.html",
+    "src/space-icons.html",
+    "src/space-nebula.html",
+    "src/space-galaxy.html",
+    "src/space-view404.html"
+  ],
+  "sourceGlobs": [
+    "src/**/*",
+    "images/**/*",
+    "bower.json"
+  ],
+  "includeDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js",
+    "src/urls.txt"
+  ]
+}

@@ -1,0 +1,98 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="space-gallery">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+
+            paper-dialog  {
+                color: #FFF !important;
+            }
+
+            .image-holder p {
+                position: absolute;
+                bottom: 3%;
+                left: 20px;
+            }
+
+            .image {
+                width: 100%;
+                height: 100%;
+            }
+
+            .col {
+                @apply(--layout-vertical);
+                line-height: 0;
+                width: 33%;
+            }
+            @media (max-width: 800px) {
+                .col  {
+                    width:50%;
+                }
+            }
+            @media (max-width: 580px) {
+                .col  {
+                    width:100%;
+                }
+            }
+
+            #container {
+                @apply(--layout-horizontal);
+                @apply(--layout-wrap);
+            }
+        </style>
+
+        <div id="container">
+            <div class="col" id="col-1"></div>
+            <div class="col" id="col-2"></div>
+            <div class="col" id="col-3"></div>
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'space-gallery',
+            ready: function () {
+                var col1 = Polymer.dom(this.root).querySelector('#col-1');
+                var col2 = Polymer.dom(this.root).querySelector('#col-2');
+                var col3 = Polymer.dom(this.root).querySelector('#col-3');
+                $.ajax({
+                    url: "src/urls.txt",
+                    success: function (result) {
+                        var array = result.split("\n");
+                        var size;
+                        var counter = 0;
+                        array.forEach(function (entry) {
+                            entry = entry.split("|");
+                            var container;
+                            if (counter < 33){
+                                container = col1;
+                            }
+                            else if (counter >= 33 && counter < 66) {
+                                container = col2;
+                            }
+                            else if (counter > 66){
+                                container = col3;
+                            }
+                            $(container).append("<space-image class='image' src='" + entry[0] + "' title='" + entry[1] +"' desc='" + entry[2] + "'/>");
+                            counter++;
+                        })
+                    }
+                })
+            }
+        });
+    </script>
+</dom-module>

@@ -1,0 +1,38 @@
+<html><head><link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+
+</head><body><dom-module id="space-gasgiant">
+    <template>
+        <style>
+            :host {
+                display: block;
+                color: #000;
+                padding: 10px 20px;
+                height: 100%;
+                background: url("https://cdn.spacetelescope.org/archives/images/wallpaper2/heic0910q.jpg") no-repeat;
+                background-size: cover;
+            }
+            img {
+                height: 30%;
+                width: 30%;
+            }
+
+            paper-material {
+                background: #fff;
+                width: 85%;
+                margin: 70px auto 0;
+                padding: 16px;
+            }
+        </style>
+        <paper-material elevation="3">
+            <h1>Gas Giants</h1>
+            <img src="http://ste.india.com/sites/default/files/2015/12/16/442079-neptune.jpg" alt="">
+            <h3>What are they?</h3>
+            <p>A gas giant is a large planet composed mostly of gases, such as hydrogen and helium, with a relatively small rocky core.</p>
+            <p>These are typically the biggest planets in a solar system. They are made out of the remnants of disk of gas that orbits a newly formed star. </p>
+        </paper-material>
+    </template>
+
+    <script>Polymer({is:"space-gasgiant"});</script>
+</dom-module>
+</body></html>

@@ -1,0 +1,105 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+<!--<script src="jquery.lazyload.js"></script>-->
+
+<dom-module id="space-image">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+            p {
+                line-height: normal;
+                font-size: 24px;
+            }
+            iron-image {
+                --iron-image-width: 100%;
+                --iron-image-height: 100%;
+                --iron-image-placeholder: {
+                    background: #515151;
+                };
+            }
+
+            h1 {
+                color:#fff;
+            }
+
+            paper-dialog {
+                --paper-dialog-background-color: #212121;
+                --paper-dialog-color: #fff;
+                align-items: center;
+                height: 100%;
+                width: 100%;
+            }
+            @media (max-width: 800px) {
+                @media (max-width: 540px) {
+                    .modal-img {
+                        display: none;
+                    }
+                }
+                .modal-img {
+                    height: 320px;
+                }
+            }
+            .modal-img {
+                height: 75%;
+                width: 83%;
+            }
+            .img-holder {
+                position: relative;
+            }
+            .img-holder p {
+                color: #fff;
+                position: absolute;
+                left: 2%;
+                bottom: 1%;
+            }
+        </style>
+        <div class="img-holder">
+            <iron-image preload fade class="image" src="[[src]]"></iron-image>
+            <p>[[title]]</p>
+        </div>
+        <paper-dialog id="modal">
+            <img src="[[src]]" class="modal-img"/>
+            <h1>[[title]]</h1>
+            <p>[[desc]]</p>
+            <div class="buttons">
+                <paper-button dialog-confirm autofocus raised closeDialog>Close</paper-button>
+            </div>
+        </paper-dialog>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'space-image',
+            listeners: {
+                'tap': "onClick"
+            },
+            ready: function() {
+/*                $("img.lazy").lazyload({
+                    container: $(".image-holder")
+                    threshold : 200
+                });*/
+            },
+            properties: {
+                src: String,
+                title: String,
+                desc: String
+            },
+            onClick: function (e) {
+                var modal = Polymer.dom(this.root).querySelector('#modal');
+                modal.open();
+            }
+        });
+    </script>
+</dom-module>

@@ -1,0 +1,189 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/google-signin/google-signin.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="space-icons.html">
+<link rel="import" href="space-image.html">
+<link rel="import" href="space-app.html">
+
+<dom-module id="space-app">
+    <template>
+        <style>
+            :host {
+                --app-primary-color: #212121;
+                --app-secondary-color: #424242;
+
+                display: block;
+            }
+
+            app-drawer-layout {
+                background: #424242;
+            }
+
+            div[main-title]{
+                font-size: 36px;
+                font-weight: 500;
+                font-variant: small-caps;
+                text-align: center;
+            }
+
+            app-header {
+                color: #fff;
+                background-color: var(--app-primary-color);
+            }
+
+            app-header paper-icon-button {
+                --paper-icon-button-ink-color: white;
+            }
+
+            .drawer-list {
+                margin: 0 20px;
+            }
+
+            .drawer-list a {
+                display: block;
+                padding: 0 16px;
+                text-decoration: none;
+                color: #fff;
+                line-height: 40px;
+            }
+
+            .drawer-list a.iron-selected {
+                color: #fff;
+                font-weight: bold;
+            }
+
+            #drawer {
+                color:#fff;
+                --app-drawer-content-container: {
+                    background: #434343;
+                }
+            }
+
+            paper-icon-button.white {
+                color:#fff;
+                --paper-icon-button-ink-color: #8a8a8a;
+            }
+            space-nebula, space-quasar, space-gasgiant, space-contact {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                padding: 0;
+                margin: 0;
+            }
+        </style>
+
+        <app-location route="{{route}}"></app-location>
+        <app-route
+                route="{{route}}"
+                pattern="/doherty/:page"
+                data="{{routeData}}"
+                tail="{{subroute}}"></app-route>
+
+        <app-drawer-layout fullbleed>
+            <!-- Drawer content -->
+            <app-drawer id="drawer" forceNarrow>
+                <app-toolbar>Menu</app-toolbar>
+                <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+                    <a name="space-gallery" href="/doherty/gallery">Gallery</a>
+                    <a name="space-nebula" href="/doherty/nebula">Nebula</a>
+                    <a name="space-quasar" href="/doherty/quasar">Quasar</a>
+                    <a name="space-gasgiant" href="/doherty/gasgiant">Gas Giants</a>
+                    <a name="space-contact" href="/doherty/contact">Contact/Newsletter</a>
+                </iron-selector>
+            </app-drawer>
+
+            <!-- Main content -->
+            <app-header-layout has-scrolling-region>
+
+                <app-header condenses reveals>
+                    <app-toolbar>
+                        <paper-icon-button on-tap="toggleDrawer" class="white" icon="space-icons:menu"></paper-icon-button>
+                        <div main-title>SPACE</div>
+                    </app-toolbar>
+                </app-header>
+
+                <iron-pages
+                        selected="[[page]]"
+                        attr-for-selected="name"
+                        fallback-selection="view404"
+                        role="main">
+                    <space-gallery name="gallery"></space-gallery>
+                    <space-nebula name="nebula"></space-nebula>
+                    <space-quasar name="quasar"></space-quasar>
+                    <space-gasgiant name="gasgiant"></space-gasgiant>
+                    <space-contact name="contact"></space-contact>
+                    <space-view404 name="view404"></space-view404>
+                </iron-pages>
+            </app-header-layout>
+        </app-drawer-layout>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'space-app',
+
+            properties: {
+                page: {
+                    type: String,
+                    reflectToAttribute: true,
+                    observer: '_pageChanged'
+                }
+            },
+
+            observers: [
+                '_routePageChanged(routeData.page)'
+            ],
+
+            _routePageChanged: function (page) {
+                this.page = page || 'gallery';
+
+                if (!this.$.drawer.persistent) {
+                    this.$.drawer.close();
+                }
+            },
+
+            toggleDrawer: function () {
+                this.$.drawer.toggle();
+            },
+
+            _pageChanged: function (page) {
+                // Load page import on demand. Show 404 page if fails
+                console.log("Page " + page);
+                var resolvedPageUrl = this.resolveUrl('space-' + page + '.html');
+                this.importHref(resolvedPageUrl, null, this._showPage404, true);
+            },
+
+            _showPage404: function () {
+                this.page = 'view404';
+            }
+        });
+    </script>
+</dom-module>

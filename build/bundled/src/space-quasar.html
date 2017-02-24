@@ -1,0 +1,39 @@
+<html><head><link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+
+</head><body><dom-module id="space-quasar">
+    <template>
+        <style>
+            :host {
+                display: block;
+                color: #000;
+                padding: 10px 20px;
+                height: 100%;
+                background: url("http://www.space.com/images/i/000/011/163/original/black-hole-quasar-water-cloud.jpg?1311361757?interpolation=lanczos-none&downsize=*:1400") no-repeat;
+                background-size: cover;
+            }
+            img {
+                height: 30%;
+                width: 30%;
+            }
+
+            paper-material {
+                background: #fff;
+                width: 85%;
+                margin: 70px auto 0;
+                padding: 16px;
+            }
+        </style>
+        <paper-material elevation="3">
+            <h1>Quasar</h1>
+            <img src="https://cdn.spacetelescope.org/archives/images/wallpaper2/potw1346a.jpg" alt="">
+            <h3>What are they?</h3>
+            <p>Shining so brightly that they eclipse the ancient galaxies that contain them, quasars are distant objects powered by black holes a billion times as massive as our sun. </p>
+            <h3>Wait, how can a black hole be bright?</h3>
+            <p>Quasars get their brightness from ejecting highly energized gas out of the magnetic poles of the black hole. This usually happens when the black hole is taking in more than it can handle</p>
+        </paper-material>
+    </template>
+
+    <script>Polymer({is:"space-quasar"});</script>
+</dom-module>
+</body></html>

@@ -1,0 +1,46 @@
+<html><head><link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+
+</head><body><dom-module id="space-nebula">
+    <template>
+        <style>
+            :host {
+                display: block;
+                color: #000;
+                padding: 10px 20px;
+                height: 100%;
+                background: url("https://cdn.spacetelescope.org/archives/images/wallpaper2/heic0506b.jpg") no-repeat;
+                background-size: cover;
+            }
+            img {
+                height: 30%;
+                width: 30%;
+            }
+
+            paper-material {
+                background: #fff;
+                width: 85%;
+                margin: 70px auto 0;
+                padding: 16px;
+            }
+        </style>
+        <paper-material elevation="3">
+            <h1>Nebula</h1>
+            <img src="https://cdn.spacetelescope.org/archives/images/wallpaper2/heic1501a.jpg" alt="">
+            <h3>What are they?</h3>
+            <p>Nebulae are rightfully called stellar nurseries because they are huge clouds of hydrogen gas out of which starts are born</p>
+            <p>Contrary to their portrayal in many space movies, these nebulae can be millions of light years across</p>
+            <h3>Classical types</h3>
+            <p>Objects named nebulae belong to four major groups. Before their nature was understood, galaxies ("spiral nebulae") and star clusters too distant to be resolved as stars were also classified as nebulae, but no longer are.</p>
+            <ul>
+                <li>H II regions, large diffuse nebulae containing ionized hydrogen</li>
+                <li>Planetary nebulae</li>
+                <li>Supernova remnant (e.g., Crab Nebula)</li>
+                <li>Dark nebula</li>
+            </ul>
+        </paper-material>
+    </template>
+
+    <script>Polymer({is:"space-nebula"});</script>
+</dom-module>
+</body></html>
