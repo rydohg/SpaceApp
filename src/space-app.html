@@ -8,28 +8,28 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
-<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
-<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
-<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
-<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
-<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../bower_components/app-route/app-location.html">
-<link rel="import" href="../bower_components/app-route/app-route.html">
-<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
-<link rel="import" href="../bower_components/iron-image/iron-image.html">
-<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../bower_components/paper-input/paper-input.html">
-<link rel="import" href="../bower_components/google-signin/google-signin.html">
-<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
-<link rel="import" href="space-icons.html">
-<link rel="import" href="space-image.html">
-<link rel="import" href="space-app.html">
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="/bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="/bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="/bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="/bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="/bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="/bower_components/app-route/app-location.html">
+<link rel="import" href="/bower_components/app-route/app-route.html">
+<link rel="import" href="/bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="/bower_components/iron-image/iron-image.html">
+<link rel="import" href="/bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="/bower_components/paper-input/paper-input.html">
+<link rel="import" href="/bower_components/google-signin/google-signin.html">
+<link rel="import" href="/bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="/src/space-icons.html">
+<link rel="import" href="/src/space-image.html">
+<!-- <link rel="import" href="/src/space-app.html"> -->
 
 <dom-module id="space-app">
     <template>
@@ -103,7 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-location route="{{route}}"></app-location>
         <app-route
                 route="{{route}}"
-                pattern="/doherty/:page"
+                pattern="/SpaceApp/:page"
                 data="{{routeData}}"
                 tail="{{subroute}}"></app-route>
 
@@ -112,11 +112,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <app-drawer id="drawer" forceNarrow>
                 <app-toolbar>Menu</app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-                    <a name="space-gallery" href="/doherty/gallery">Gallery</a>
-                    <a name="space-nebula" href="/doherty/nebula">Nebula</a>
-                    <a name="space-quasar" href="/doherty/quasar">Quasar</a>
-                    <a name="space-gasgiant" href="/doherty/gasgiant">Gas Giants</a>
-                    <a name="space-contact" href="/doherty/contact">Contact/Newsletter</a>
+                    <a name="space-gallery" href="/SpaceApp/gallery">Gallery</a>
+                    <a name="space-nebula" href="/SpaceApp/nebula">Nebula</a>
+                    <a name="space-quasar" href="/SpaceApp/quasar">Quasar</a>
+                    <a name="space-gasgiant" href="/SpaceApp/gasgiant">Gas Giants</a>
+                    <a name="space-contact" href="/SpaceApp/contact">Contact/Newsletter</a>
                 </iron-selector>
             </app-drawer>
 
